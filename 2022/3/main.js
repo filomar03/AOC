@@ -8,12 +8,19 @@ let data = mod.input
 
 data = data.map(sets => utils.findIntersection(sets[0], sets[1]))
     .flat()
-    .map((value) => {
-        if (value == value.toUpperCase()) {
-            return value.charCodeAt(0) - 'A'.charCodeAt(0) + 27;
-        } else { 
-            return value.charCodeAt(0) - 'a'.charCodeAt(0) + 1;
-        }
-    });
+    .map((value) => utils.letterToPriority(value));
 
-console.log('intersections total priority:', data.reduce((acc, val) => acc += val));
+console.log('items total priority:', data.reduce((acc, val) => acc += val));
+
+data = mod.input;
+
+data.forEach((value, index, array) => {
+    if (index % 3 == 0 && typeof value == 'string') 
+    array.push(array.slice(index, index + 3));
+});
+
+data = data.splice(data.length / 4 * 3).map(strings => {
+    return utils.findIntersection(new Set(strings[0]), new Set(strings[1]), new Set(strings[2]),);
+}).flat();
+
+console.log('badges total priority:', data.reduce((acc, value) => acc += utils.letterToPriority(value), 0));

@@ -11,6 +11,15 @@ function findIntersection(...sets) {
     return intersections;
 }
 
+function letterToPriority(letter) {
+    if (letter == letter.toUpperCase()) {
+        return letter.charCodeAt(0) - 'A'.charCodeAt(0) + 27;
+    } else { 
+        return letter.charCodeAt(0) - 'a'.charCodeAt(0) + 1;
+    }
+}
+
 module.exports = {
-    findIntersection
+    findIntersection,
+    letterToPriority
 }
