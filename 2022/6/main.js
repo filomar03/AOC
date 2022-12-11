@@ -1,24 +1,40 @@
 const input = require('./input.js');
 
-let stacks = JSON.parse(JSON.stringify(input.stacks));
+let marker = null;
 
-input.instructions.forEach(([qty, from, to]) => {
-    for (let i = 0; i < qty; i++) {
-        stacks[to - 1].push(stacks[from - 1].pop());
+input.data.split('').forEach((val, idx, arr) => {    
+    if (idx < 3) return;
+
+    if (marker != null) return;
+
+    let dict = {};
+    for (let i = 0; i < 4; i++) {
+        if (!dict[arr[idx - i]]) {
+            dict[arr[idx - i]] = true;
+        } else return;
     }
-})
 
-let result = '';
-for (let i = 0; i < input.stackNum; i++) result += stacks[i].pop();
-console.log('CrateMover 9000:', '\'' + result + '\'');
+    marker = idx + 1;
+});
+
+console.log('chars before \'start-of-packets\':', marker);
 
 
-stacks = JSON.parse(JSON.stringify(input.stacks));
+marker = null;
 
-input.instructions.forEach(([qty, from, to]) => {
-    stacks[to - 1].push(...stacks[from - 1].splice(-qty, qty))
-})
+input.data.split('').forEach((val, idx, arr) => {    
+    if (idx < 13) return;
 
-result = '';
-for (let i = 0; i < input.stackNum; i++) result += stacks[i].pop();
-console.log('CrateMover 9001:', '\'' + result + '\'');
+    if (marker != null) return;
+
+    let dict = {};
+    for (let i = 0; i < 14; i++) {
+        if (!dict[arr[idx - i]]) {
+            dict[arr[idx - i]] = true;
+        } else return;
+    }
+
+    marker = idx + 1;
+});
+
+console.log('chars before \'start-of-message\':', marker);
