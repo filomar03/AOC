@@ -1,14 +1,34 @@
 const input = require('./input.js');
 
-console.log(input.instructions)
+//CrateMover9000
+//deep copy stacks from input.js
+let stacks = JSON.parse(JSON.stringify(input.stacks));
 
-input.instructions.forEach(([qty, from, to]) => {
-    if (qty === undefined) return;
+//execute instructions
+input.instructions.forEach(([qty, fromIdx, toIdx]) => {
+    let from = stacks[fromIdx - 1], to = stacks[toIdx - 1];
     for (let i = 0; i < qty; i++) {
-        input.stacks[to - 1].push(input.stacks[from - 1].pop());
+        to.push(from.pop());
     }
 })
 
-for (let i = 0; i < 9; i++) {
-    //console.log(input.stacks[i].pop());
-}
+//print result
+let result = '';
+for (let i = 0; i < input.stackNum; i++) result += stacks[i].pop();
+console.log('CrateMover 9000:', '\'' + result + '\'');
+
+
+//CrateMover9001
+//deep copy stacks from input.js
+stacks = JSON.parse(JSON.stringify(input.stacks));
+
+//execute instructions
+input.instructions.forEach(([qty, fromIdx, toIdx]) => {
+    let from = stacks[fromIdx - 1], to = stacks[toIdx - 1];
+    to.push(...from.splice(-qty, qty))
+})
+
+//print result
+result = '';
+for (let i = 0; i < input.stackNum; i++) result += stacks[i].pop();
+console.log('CrateMover 9001:', '\'' + result + '\'');
