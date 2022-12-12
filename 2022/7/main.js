@@ -37,19 +37,17 @@ commands.forEach(([command, output]) => {
     }
 });
 
+console.log(rootDir)
+
 function iterateSubDir(dir) {
-    console.log('from:', dir);
+    let subDirs = [];
+    console.log(dir)
     for (let subDir in dir) {
-        console.log('to:', subDir);
-        //iterateSubDir(subDir); 
+        console.log(subDir)
+        subDirs.push(subDir); 
     }
-    console.log();
+    console.log(subDirs, '\n')
+    subDirs.forEach(val => iterateSubDir(val));
 }
 
-iterateSubDir(rootDir);
-iterateSubDir(rootDir.stocazzo);
-iterateSubDir(rootDir.stocazzo.stocazzino);
-iterateSubDir(rootDir.stocazzo.stocazzillo);
-iterateSubDir(rootDir.frocio);
-iterateSubDir(rootDir.frocio.frociazzo);
-iterateSubDir(rootDir.frocio.frocione);
+iterateSubDir(rootDir)

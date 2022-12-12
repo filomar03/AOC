@@ -1,9 +1,9 @@
 $ cd /
-$ cd stocazzo
-$ cd stocazzino
+$ cd perche
+$ cd non
 $ cd ..
-$ cd stocazzillo
+$ cd funzioni
 $ cd /
-$ cd frocio
-$ cd frociazzo
-$ cd frocione
+$ cd succedono
+$ cd cose
+$ cd acaso
