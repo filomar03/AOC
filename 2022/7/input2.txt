@@ -1,0 +1,19 @@
+$ cd /
+$ ls 
+150 grub.cfg
+$ cd home
+$ ls 
+$ cd documents
+$ ls 
+500 essay.docx
+180 php_cheatsheet.pdf
+$ cd ..
+$ cd desktop
+$ cd minecraft
+$ cd ..
+$ cd valorant
+$ ls
+320 launcher.exe
+$ cd ..
+$ ls
+75 wallpaper.png

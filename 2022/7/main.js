@@ -17,7 +17,7 @@ input.data.forEach((val, idx, arr) => {
 })
 
 //create dir structure
-const rootDir = new utils.Dir();
+const rootDir = new utils.Dir('root');
 let currentDir = rootDir;
 
 //interpret commands
@@ -28,7 +28,7 @@ commands.forEach(([command, output]) => {
         if (arg == '..') currentDir = currentDir.closure;
         else if (arg == '/') currentDir = rootDir;
         else {
-            if (!currentDir[arg]) currentDir[arg] = new utils.Dir(currentDir);
+            if (!currentDir[arg]) currentDir[arg] = new utils.Dir(arg, currentDir);
             currentDir = currentDir[arg];
         }
     } else {
@@ -37,17 +37,20 @@ commands.forEach(([command, output]) => {
     }
 });
 
-console.log(rootDir)
+utils.updateDirSize(rootDir);
+const targetSize = 100000;
+let selectedDirs = rootDir.toArray().filter(dir => dir.size <= targetSize);
 
-function iterateSubDir(dir) {
-    let subDirs = [];
-    console.log(dir)
-    for (let subDir in dir) {
-        console.log(subDir)
-        subDirs.push(subDir); 
-    }
-    console.log(subDirs, '\n')
-    subDirs.forEach(val => iterateSubDir(val));
-}
+console.log('dir with size <= ' + targetSize + ':', selectedDirs.length, selectedDirs.map(({name}) => name));
+console.log('total size of these dirs:', selectedDirs.map(({size}) => size)
+    .reduce((acc, val) => acc += val, 0), selectedDirs.map(({size}) => size));
 
-iterateSubDir(rootDir)
+
+const totalSpace = 70000000;
+const spaceRequired = 30000000;
+const availableSpace = totalSpace - rootDir.size;
+const spaceToFree = spaceRequired - availableSpace;
+console.log('space to free up:', spaceToFree);
+
+let suitableDirs = rootDir.toArray().filter(dir => dir.size >= spaceToFree);
+console.log('suitable dirs for deletion (sorted):', suitableDirs.map(({name, size}) => [name, size]).sort(([, a], [, b]) => a - b));
