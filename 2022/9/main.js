@@ -19,7 +19,6 @@ input.data.forEach(([dir, steps]) => {
         move(head, [dx, dy]);
         
         if (distance(head, tail) >= 2) {
-            console.log(`tail is too far, catching up...`)
             move(tail, normalize(direction(tail, head)).map(e => Math.round(e)));
         }
 
@@ -32,13 +31,10 @@ input.data.forEach(([dir, steps]) => {
         map = map.substring(0, tailIdx) + (map.charAt(tailIdx) === 'H' ? 'B' : 'T') + map.substring(tailIdx + 1);
     
         console.log(`
-AFTER MOVING
 head: ${head}
 tail: ${tail}
 direction: ${direction(head, tail)}
 distance: ${distance(head, tail)}
 ${map}`);
-
-        console.log(':'.repeat(100))
     }
 });
