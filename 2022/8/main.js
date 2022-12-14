@@ -1,11 +1,10 @@
 const input = require('./input.js');
 const utils = require('./utils.js');
 
-let grid = input.data.map((row, rowIndex) => {
-    return row.map((height, columnIndex) => {
-        let isVisible = rowIndex == 0 || columnIndex == 0 || rowIndex == input.data.length - 1 || columnIndex == row.length - 1 ? true : null;
-        return new utils.Tree(height, isVisible);
-    })
-})
+let visibleMap = input.data.map((arr, y) => arr.map((item, x) => utils.checkTree(input.data, x, y) == true ? 0 : 1));
 
-console.log(grid);
+console.log('visible trees:', visibleMap.flat().filter(val => val == 1).length);
+
+let scoreMap  = input.data.map((arr, y) => arr.map((item, x) => utils.treeScore(input.data, x, y)))
+
+console.log(scoreMap.flat().sort((a, b) => b - a));

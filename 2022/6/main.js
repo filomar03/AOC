@@ -8,7 +8,7 @@ input.data.split('').forEach((val, idx, arr) => {
     if (marker != null) return;
 
     let dict = {};
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) { //could have sorted string or used indexOf function
         if (!dict[arr[idx - i]]) {
             dict[arr[idx - i]] = true;
         } else return;
