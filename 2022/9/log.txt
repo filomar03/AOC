@@ -1,216 +1,293 @@
+moving Head right 4 times
 
-head: 1,0
-tail: 0,0
-direction: -1,0
-distance: 1
-...
-TH.
-...
+Head: 1,0
+Tail: 0,0
+Direction (Head to Tail): -1,0
+Distance: 1
+.....
+.....
+.TH..
+.....
+.....
 
+moving Tail with direction: 1,0
 
-head: 2,0
-tail: 1,0
-direction: -1,0
-distance: 1
-...
-TH.
-...
+Head: 2,0
+Tail: 1,0
+Direction (Head to Tail): -1,0
+Distance: 1
+.....
+.....
+.TH..
+.....
+.....
 
+moving Tail with direction: 1,0
 
-head: 3,0
-tail: 2,0
-direction: -1,0
-distance: 1
-...
-TH.
-...
+Head: 3,0
+Tail: 2,0
+Direction (Head to Tail): -1,0
+Distance: 1
+.....
+.....
+.TH..
+.....
+.....
 
+moving Tail with direction: 1,0
 
-head: 4,0
-tail: 3,0
-direction: -1,0
-distance: 1
-...
-TH.
-...
+Head: 4,0
+Tail: 3,0
+Direction (Head to Tail): -1,0
+Distance: 1
+.....
+.....
+.TH..
+.....
+.....
 
+----------------------------------------------------------------------------------------------------
+moving Head up 4 times
 
-head: 4,-1
-tail: 3,0
-direction: -1,1
-distance: 1.4142135623730951
-...
-.H.
-T..
+Head: 4,-1
+Tail: 3,0
+Direction (Head to Tail): -1,1
+Distance: 1.4142135623730951
+.....
+.....
+..H..
+.T...
+.....
 
+moving Tail with direction: 1,-1
 
-head: 4,-2
-tail: 3,-1
-direction: -1,1
-distance: 1.4142135623730951
-...
-.H.
-T..
+Head: 4,-2
+Tail: 4,-1
+Direction (Head to Tail): 0,1
+Distance: 1
+.....
+.....
+..H..
+..T..
+.....
 
+moving Tail with direction: 0,-1
 
-head: 4,-3
-tail: 3,-2
-direction: -1,1
-distance: 1.4142135623730951
-...
-.H.
-T..
+Head: 4,-3
+Tail: 4,-2
+Direction (Head to Tail): 0,1
+Distance: 1
+.....
+.....
+..H..
+..T..
+.....
 
+moving Tail with direction: 0,-1
 
-head: 4,-4
-tail: 3,-3
-direction: -1,1
-distance: 1.4142135623730951
-...
-.H.
-T..
+Head: 4,-4
+Tail: 4,-3
+Direction (Head to Tail): 0,1
+Distance: 1
+.....
+.....
+..H..
+..T..
+.....
 
+----------------------------------------------------------------------------------------------------
+moving Head left 3 times
 
-head: 3,-4
-tail: 3,-3
-direction: 0,1
-distance: 1
-...
-.H.
-.T.
+Head: 3,-4
+Tail: 4,-3
+Direction (Head to Tail): 1,1
+Distance: 1.4142135623730951
+.....
+.....
+..H..
+...T.
+.....
 
+moving Tail with direction: -1,-1
 
-head: 2,-4
-tail: 3,-3
-direction: 1,1
-distance: 1.4142135623730951
-...
-.H.
-..T
+Head: 2,-4
+Tail: 3,-4
+Direction (Head to Tail): 1,0
+Distance: 1
+.....
+.....
+..HT.
+.....
+.....
 
+moving Tail with direction: -1,0
 
-head: 1,-4
-tail: 2,-3
-direction: 1,1
-distance: 1.4142135623730951
-...
-.H.
-..T
+Head: 1,-4
+Tail: 2,-4
+Direction (Head to Tail): 1,0
+Distance: 1
+.....
+.....
+..HT.
+.....
+.....
 
+----------------------------------------------------------------------------------------------------
+moving Head down 1 times
 
-head: 1,-3
-tail: 2,-3
-direction: 1,0
-distance: 1
-...
-.HT
-...
+Head: 1,-3
+Tail: 2,-4
+Direction (Head to Tail): 1,-1
+Distance: 1.4142135623730951
+.....
+...T.
+..H..
+.....
+.....
 
+----------------------------------------------------------------------------------------------------
+moving Head right 4 times
 
-head: 2,-3
-tail: 2,-3
-direction: 0,0
-distance: 0
-...
-.B.
-...
-
-
-head: 3,-3
-tail: 2,-3
-direction: -1,0
-distance: 1
-...
-TH.
-...
-
-
-head: 4,-3
-tail: 3,-3
-direction: -1,0
-distance: 1
-...
-TH.
-...
-
-
-head: 5,-3
-tail: 4,-3
-direction: -1,0
-distance: 1
-...
-TH.
-...
-
-
-head: 5,-2
-tail: 4,-3
-direction: -1,-1
-distance: 1.4142135623730951
-T..
-.H.
-...
-
-
-head: 4,-2
-tail: 4,-3
-direction: 0,-1
-distance: 1
-.T.
-.H.
-...
+Head: 2,-3
+Tail: 2,-4
+Direction (Head to Tail): 0,-1
+Distance: 1
+.....
+..T..
+..H..
+.....
+.....
 
 
-head: 3,-2
-tail: 4,-3
-direction: 1,-1
-distance: 1.4142135623730951
-..T
-.H.
-...
+Head: 3,-3
+Tail: 2,-4
+Direction (Head to Tail): -1,-1
+Distance: 1.4142135623730951
+.....
+.T...
+..H..
+.....
+.....
+
+moving Tail with direction: 1,1
+
+Head: 4,-3
+Tail: 3,-3
+Direction (Head to Tail): -1,0
+Distance: 1
+.....
+.....
+.TH..
+.....
+.....
+
+moving Tail with direction: 1,0
+
+Head: 5,-3
+Tail: 4,-3
+Direction (Head to Tail): -1,0
+Distance: 1
+.....
+.....
+.TH..
+.....
+.....
+
+----------------------------------------------------------------------------------------------------
+moving Head down 1 times
+
+Head: 5,-2
+Tail: 4,-3
+Direction (Head to Tail): -1,-1
+Distance: 1.4142135623730951
+.....
+.T...
+..H..
+.....
+.....
+
+----------------------------------------------------------------------------------------------------
+moving Head left 5 times
+
+Head: 4,-2
+Tail: 4,-3
+Direction (Head to Tail): 0,-1
+Distance: 1
+.....
+..T..
+..H..
+.....
+.....
 
 
-head: 2,-2
-tail: 3,-3
-direction: 1,-1
-distance: 1.4142135623730951
-..T
-.H.
-...
+Head: 3,-2
+Tail: 4,-3
+Direction (Head to Tail): 1,-1
+Distance: 1.4142135623730951
+.....
+...T.
+..H..
+.....
+.....
+
+moving Tail with direction: -1,1
+
+Head: 2,-2
+Tail: 3,-2
+Direction (Head to Tail): 1,0
+Distance: 1
+.....
+.....
+..HT.
+.....
+.....
+
+moving Tail with direction: -1,0
+
+Head: 1,-2
+Tail: 2,-2
+Direction (Head to Tail): 1,0
+Distance: 1
+.....
+.....
+..HT.
+.....
+.....
+
+moving Tail with direction: -1,0
+
+Head: 0,-2
+Tail: 1,-2
+Direction (Head to Tail): 1,0
+Distance: 1
+.....
+.....
+..HT.
+.....
+.....
+
+----------------------------------------------------------------------------------------------------
+moving Head right 2 times
+
+Head: 1,-2
+Tail: 1,-2
+Direction (Head to Tail): 0,0
+Distance: 0
+.....
+.....
+..B..
+.....
+.....
 
 
-head: 1,-2
-tail: 2,-3
-direction: 1,-1
-distance: 1.4142135623730951
-..T
-.H.
-...
+Head: 2,-2
+Tail: 1,-2
+Direction (Head to Tail): -1,0
+Distance: 1
+.....
+.....
+.TH..
+.....
+.....
 
-
-head: 0,-2
-tail: 1,-3
-direction: 1,-1
-distance: 1.4142135623730951
-..T
-.H.
-...
-
-
-head: 1,-2
-tail: 1,-3
-direction: 0,-1
-distance: 1
-.T.
-.H.
-...
-
-
-head: 2,-2
-tail: 1,-3
-direction: -1,-1
-distance: 1.4142135623730951
-T..
-.H.
-...
-
+----------------------------------------------------------------------------------------------------

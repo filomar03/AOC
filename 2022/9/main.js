@@ -1,40 +1,25 @@
-const input = require('./input.js');
-const { move, distance, direction, normalize, bidimToLinearIndex, int, sum } = require('./utils.js');
+const { data: input } = require('./input.js')
+const { moveRope } = require('./utils.js')
 
-const head = [0, 0];
-const tail = [0, 0];
-const positionHistory = {
+const rope2k = new Array(2).fill([0, 0])
+const rope10k = new Array(10).fill([0, 0])
+
+const rope2kPositions = {
+    '0-0': 1
+}
+const rope10kPositions = {
     '0-0': 1
 }
 
-const mapSize = 3;
-const halfMapSize = int(mapSize / 2);
-const headIdx = bidimToLinearIndex([halfMapSize, halfMapSize], mapSize)
+input.forEach(([direction, steps]) => {
+    const dx = direction === 'R' ? 1 : direction === 'L' ? -1 : 0
+    const dy = direction === 'D' ? 1 : direction === 'U' ? -1 : 0
 
-input.data.forEach(([dir, steps]) => {
-    const dx = dir === 'R' ? 1 : dir === 'L' ? -1 : 0;
-    const dy = dir === 'D' ? 1 : dir === 'U' ? -1 : 0;
-
-    for (let i = 0; i < int(steps); i++) {
-        move(head, [dx, dy]);
-        
-        if (distance(head, tail) >= 2) {
-            move(tail, normalize(direction(tail, head)).map(e => Math.round(e)));
-        }
-
-        let map = ('.'.repeat(mapSize) + '\n').repeat(mapSize);
-
-        let tailCenteredPos = sum([halfMapSize, halfMapSize], direction(head, tail));
-        let tailIdx = bidimToLinearIndex([tailCenteredPos[0], tailCenteredPos[1]], mapSize);
-
-        map = map.substring(0, headIdx) + 'H' + map.substring(headIdx + 1);
-        map = map.substring(0, tailIdx) + (map.charAt(tailIdx) === 'H' ? 'B' : 'T') + map.substring(tailIdx + 1);
-    
-        console.log(`
-head: ${head}
-tail: ${tail}
-direction: ${direction(head, tail)}
-distance: ${distance(head, tail)}
-${map}`);
+    for (let i = 0; i < parseInt(steps); i++) { 
+        moveRope(rope2k, [dx, dy], rope2kPositions, 1)
+        moveRope(rope10k, [dx, dy], rope10kPositions, 9)   
     }
 });
+
+console.log(Object.keys(rope2kPositions))
+console.log(Object.keys(rope10kPositions))

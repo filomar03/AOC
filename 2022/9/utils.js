@@ -1,34 +1,43 @@
+function moveRope (rope, direction, history, target) {
+    for (let i = 0; i < rope.length; i++) {
+        if (i == 0) {
+            move(rope[0], direction)
+            continue
+        }
+
+        if (calculateDistance(rope[i - 1], rope[i]) >= 2) {
+            move(rope[i], normalize(calculateDirection(rope[i], rope[i - 1])).map(e => Math.ceil(Math.abs(e)) * Math.sign(e)))
+        } else {
+            move(rope[i], direction)
+        }
+
+        if (i == target) {
+            history[rope[i].join('-')] ? history[rope[i].join('-')]++ : history[rope[i].join('-')] = 1 
+        }
+    }
+}
+
 function move(position, direction, value = 1) {
     position[0] += direction[0] * value;
     position[1] += direction[1] * value;
 }
 
-function distance([x1, y1], [x2, y2]) {
+function calculateDistance([x1, y1], [x2, y2]) {
     return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 }
 
-function direction([x1, y1], [x2, y2]) {
+function calculateDirection([x1, y1], [x2, y2]) {
     return [x2 - x1, y2 - y1];
 }
 
 function normalize([x, y]) {
-    return [x / distance([0, 0], [x, y]), y / distance([0, 0], [x, y])]
+    return [x / calculateDistance([0, 0], [x, y]), y / calculateDistance([0, 0], [x, y])]
 }
 
-const bidimToLinearIndex = ([x, y], length, lineFeed = true) => y * (length + (lineFeed ? 1 : 0)) + x % length;
+//const bidimToLinearIndex = ([x, y], length, lineFeed = true) => y * (length + (lineFeed ? 1 : 0)) + x % length;
 
-const int = (x) => parseInt(x);
-
-function sum([x1, y1], [x2, y2]) {
-    return [x1 + x2, y1 + y2];
-}
+//const int = (x) => parseInt(x);
 
 module.exports = {
-    move, 
-    distance,
-    direction,
-    normalize,
-    bidimToLinearIndex,
-    int,
-    sum
+    moveRope
 }
