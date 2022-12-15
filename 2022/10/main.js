@@ -1,4 +1,3 @@
-const { sign } = require('crypto')
 const { data: instructions } = require('./input')
 
 let register = 1
@@ -54,12 +53,12 @@ while (true) {
 
 
     // debug info
-    if (/* (cycle - signalStrengthPollingRate) % displayLength == 0 || cycle == signalStrengthPollingRate */ true) {
-        /* console.log(`begin executing [opcode: ${instruction}, operand: ${operand}, cycles: ${cyclesReq}]`)
+    /* if ((cycle - signalStrengthPollingRate) % displayLength == 0 || cycle == signalStrengthPollingRate || true) {
+        console.log(`begin executing [opcode: ${instruction}, operand: ${operand}, cycles: ${cyclesReq}]`)
         console.log(`cycle: ${cycle}   reg: ${register}   signal strenght: ${cycle * register}`)
         console.log(`current crt line: ${crtDisplay}`)
-        console.log('-'.repeat(displayLength)) */
-    } 
+        console.log('-'.repeat(displayLength))
+    }  */
     //-----------
     
 
