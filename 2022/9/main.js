@@ -1,8 +1,8 @@
 const { data: input } = require('./input.js')
 const { moveRope } = require('./utils.js')
 
-const rope2k = new Array(2).fill([0, 0])
-const rope10k = new Array(10).fill([0, 0])
+const rope2k = Array(2).fill([0, 0]).map(e => e.slice())
+const rope10k = Array(10).fill([0, 0]).map(e => e.slice())
 
 const rope2kPositions = {
     '0-0': 1
@@ -21,5 +21,5 @@ input.forEach(([direction, steps]) => {
     }
 });
 
-console.log(Object.keys(rope2kPositions))
-console.log(Object.keys(rope10kPositions))
+console.log(`position visited by the tail of rope with 2 knots: ${Object.keys(rope2kPositions).length}`)
+console.log(`position visited by the tail of rope with 10 knots: ${Object.keys(rope10kPositions).length}`)

@@ -55,3 +55,12 @@ ${map}`); */
 });
 
 console.log(Object.keys(positionHistory).length);
+
+
+////////////////////////////////////////////
+
+
+
+console.log(i);
+//console.log('rope:', rope, `${i}${rope[i - 1]}`, `${i}${rope[i]}`)
+
