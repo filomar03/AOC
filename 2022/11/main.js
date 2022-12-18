@@ -3,8 +3,7 @@ const { Monkey, lcm } = require('./utils')
 
 function parseMonkeys (data) {
     return data.map(([items, operation, test, branchT, branchF]) => {
-        //console.log(items, operation, test, branchT, branchF)
-        return new Monkey(items, operation, test, branchT, branchF)
+        return new Monkey([...items], operation, test, branchT, branchF)
     })
 } 
 
