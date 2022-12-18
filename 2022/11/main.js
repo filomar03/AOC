@@ -1,25 +1,38 @@
-const { data: monkeys } = require('./input')
+const { data } = require('./input')
+const { Monkey, lcm } = require('./utils')
 
-const targetRounds = 10000
-const reliefModifier = 1
-
-let counter = Array(monkeys.length).fill(0)
-let old
-
-for (let round = 0; round < targetRounds; round++) {
-    monkeys.forEach(([items, [operator, operand], test, branchT, branchF], index) => {
-        for (let item of items) {
-            counter[index]++
-            const calc = operator === '*' ? (a, b) => a * b : (a, b) => a + b //i know i could have used a var for operand and used ternary on operator, but didn't want to change names
-            old = Math.floor(calc(item, operand === 'old' ? item : parseInt(operand)) / reliefModifier)
-            if (old % test == 0) {
-                monkeys[branchT][0].push(old)
-            } else {
-                monkeys[branchF][0].push(old)
-            }
-        }
-        items.splice(0, items.length)
+function parseMonkeys (data) {
+    return data.map(([items, operation, test, branchT, branchF]) => {
+        //console.log(items, operation, test, branchT, branchF)
+        return new Monkey(items, operation, test, branchT, branchF)
     })
+} 
+
+function inspectItems (monkeys, monkey, reliefModifier, manageableLvl) {
+    monkey.items.forEach(item => {
+        monkey.inspectCounter++
+        item = monkey.operation(item, monkey.operand === 'old' ? item : parseInt(monkey.operand))
+        item = Math.floor(item / reliefModifier)
+        item %= manageableLvl
+        if (item % monkey.test == 0) 
+        monkeys[monkey.branchT].items.push(item)
+        else
+        monkeys[monkey.branchF].items.push(item)    
+    })
+    monkey.items = []
 }
 
-console.log(`level of monkey business after ${targetRounds} rounds: ${counter.sort((a, b) => b - a).slice(0, 2).reduce((a, b) => a * b)}`)
+
+let monkeys = parseMonkeys(data)
+const monkeysLcm = monkeys.map(monkey => monkey.test).reduce(lcm)
+for (let i = 0; i < 20; i++) {
+    monkeys.forEach(monkey => inspectItems(monkeys, monkey, 3, monkeysLcm))
+}
+console.log(`monkey business after 20 rounds with relief: ${monkeys.map(element => element.inspectCounter).sort((a, b) => b - a).slice(0, 2).reduce((a, b) => a * b)}`)
+
+
+monkeys = parseMonkeys(data)
+for (let i = 0; i < 10000; i++) {
+    monkeys.forEach(monkey => inspectItems(monkeys, monkey, 1, monkeysLcm))
+}
+console.log(`monkey business after 10k rounds with no relief: ${monkeys.map(element => element.inspectCounter).sort((a, b) => b - a).slice(0, 2).reduce((a, b) => a * b)}`)
