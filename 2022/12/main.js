@@ -10,6 +10,4 @@ start.value = 0
 const goal = gridFind(grid, 'E')
 goal.value = 3
 
-let path = []
-constructPath(aStar(grid, start, goal), path)
-console.log(path)
+console.log(aStar(grid, start, goal))

@@ -1,48 +1,49 @@
 import { getNeighbors, heuristic } from './cell.js'
 
-//let i = 0
 export function aStar(grid, start, goal) {
     const openQueue = [start]
     start.g = 0
-    const closedQueue = []
+    const closedQueue = [start]
 
     while (openQueue.length > 0) {
-        const current = openQueue.sort((a, b) => b.h - a.h).pop()
-        closedQueue.push(current)
+        const current = openQueue.sort((a, b) => b.f() - a.f()).pop()
 
-        const printableOQ = openQueue.sort((a, b) => b.h - a.h)
+        //DEBUG print
+        /* const printableOQ = openQueue.sort((a, b) => b.h - a.h)
         console.log(`openQueue: [${printableOQ.length > 3 ? '\n ...' : ''}`)
         printableOQ.slice(-3).forEach(n => console.log(' -', n.toString()))
         console.log(']')
         console.log(`closedQueue: [`)
         closedQueue.slice(-3).forEach(n => console.log(' -', n.toString()))
         console.log(']')
-        console.log('on:', current.toString())
+        console.log('on:', current.toString()) */
+        //-----------
 
         if (current === goal) {
+            //DEBUG print
             console.log(`FINISHED !!! (${current.g} steps)`) 
-        
-            //path not working
+            
             return current
         }
         
         const neighborns = getNeighbors(grid, current)
             .filter(n => !closedQueue.includes(n))
-            .map(n => { //read more about f, g and h to understant what's going
+            .map(n => { 
+                closedQueue.push(n)
                 n.h = heuristic(n, goal)
                 n.g = current.g + 1
                 n.parent = current
                 return n
             })
-        openQueue.push(...neighborns) //add to closeQueue directly now??
+        openQueue.push(...neighborns)
 
-        console.log('neighborns: [')
+        //DEBUG print
+        /* console.log('neighborns: [')
         neighborns.forEach(n => {
             console.log(' -', n.toString())
         })
-        console.log(']', '\n' + '-'.repeat(70))
-        
-        //if (i++ > 500) return null
+        console.log(']', '\n' + '-'.repeat(70)) */
+        //-----------
     }
 
     console.log('NO SOLUTIONS !!!')
@@ -54,7 +55,8 @@ export const gridFind = (grid, value) => {
     return y != undefined && x != undefined ? grid[y][x] : null
 }
 
-export const constructPath = (pathCell, pathArray) => {
-    if (pathCell.parent) constructPath(pathCell.parent, pathArray)
-    pathArray.push([pathCell.y, pathCell.x])
+export const constructPath = (pathCell) => {
+    const str = `[${pathCell.y}, ${pathCell.x}] -> `
+    if (pathCell.parent) return constructPath(pathCell.parent) + str
+    return str
 }

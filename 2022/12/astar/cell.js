@@ -2,7 +2,7 @@ export const Cell = function (y, x, value) {
     this.y = y
     this.x = x
     this.value = value
-    //add f property
+    this.f = function () { return this.g + this.h }
     this.g = null
     this.h = null
     this.parent = null
