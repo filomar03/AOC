@@ -1,6 +1,6 @@
 import { data } from "./input.js";
-import { Cell } from "./a*/cell.js";
-import { aStar, gridFind, constructPath } from "./a*/main.js";
+import { Cell } from "./astar/cell.js";
+import { aStar, gridFind, constructPath } from "./astar/main.js";
 
 const grid = data.map((e, row) => e.map((letter, column) => {
     return new Cell(row, column, letter.match(/[a-z]/) ? letter.charCodeAt(0) - 'a'.charCodeAt(0) : letter)
