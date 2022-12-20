@@ -1,7 +1,11 @@
-import { readFileSync } from 'fs'
+const fs = require('fs')
 
-export const data = readFileSync('./input.txt', 'utf-8')
+const data = fs.readFileSync('./input1.txt', 'utf-8')
     .replaceAll('\r', '')
     .trim()
     .split('\n')
     .map(e => e.split(''))
+    
+module.exports = {
+    data
+}
