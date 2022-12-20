@@ -21,7 +21,7 @@ export function aStar(grid, start, goal) {
 
         if (current === goal) {
             //DEBUG print
-            console.log(`FINISHED !!! (${current.g} steps)`) 
+            //console.log(`FINISHED !!! (${current.g} steps)`) 
             
             return current
         }
@@ -46,17 +46,20 @@ export function aStar(grid, start, goal) {
         //-----------
     }
 
-    console.log('NO SOLUTIONS !!!')
+    //console.log('NO SOLUTIONS !!!')
+    return null
 }
 
 export const gridFind = (grid, value) => {
-    let { y, x } = {}
-    grid.forEach(row => row.forEach(cell => { if (cell.value === value) { y = cell.y, x = cell.x }}))
-    return y != undefined && x != undefined ? grid[y][x] : null
+    for(let row of grid) {
+        for (let cell of row) {
+            if (cell.value === value) return cell
+        }
+    }
+    return null
 }
 
-export const constructPath = (pathCell) => {
-    const str = `[${pathCell.y}, ${pathCell.x}] -> `
-    if (pathCell.parent) return constructPath(pathCell.parent) + str
-    return str
+export const traceStart = (path) => {
+    if (path.parent) return traceStart(path.parent)
+    return path
 }

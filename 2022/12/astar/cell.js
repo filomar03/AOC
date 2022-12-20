@@ -1,11 +1,14 @@
-export const Cell = function (y, x, value) {
+export const Cell = function (y, x, value, g = null, h = null, parent = null) {
     this.y = y
     this.x = x
     this.value = value
-    this.f = function () { return this.g + this.h }
     this.g = null
     this.h = null
     this.parent = null
+}
+
+Cell.prototype.f = function () {
+    return this.g + this.h
 }
 
 Cell.prototype.toString = function () {
