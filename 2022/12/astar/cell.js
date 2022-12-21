@@ -12,7 +12,7 @@ Cell.prototype.f = function () {
 }
 
 Cell.prototype.toString = function () {
-    return `Cell { y:${this.y}, x:${this.x}, hgt:${this.value}, g:${this.g}, h:${this.h}, parent:[${this.parent?.y}, ${this.parent?.x}] }`
+    return `Cell { y:${this.y}, x:${this.x}, value:${this.value}, f:${this.f()}, g:${this.g}, h:${this.h}, parent:[${this.parent?.y}, ${this.parent?.x}] }`
 }
 
 export const getNeighbors = (grid, {y, x, value}) => {
@@ -21,6 +21,6 @@ export const getNeighbors = (grid, {y, x, value}) => {
         .filter(cell => cell && value - cell.value >= -1)
 }
 
-export const heuristic = (current, goal) => {
-    return Math.sqrt((goal.y - current.y) ** 2 + (goal.x - current.x) ** 2)
+export const heuristic = (current, end) => {
+    return Math.sqrt((end.y - current.y) ** 2 + (end.x - current.x) ** 2)
 }
