@@ -1,0 +1,1 @@
+cls && gcc -o main.exe ..\Sources\main.c && main.exe

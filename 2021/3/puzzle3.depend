@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1638812913 source:c:\users\filippo\repos\c\aoc2021\puzzle3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
