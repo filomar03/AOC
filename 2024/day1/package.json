@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "@types/bun": "latest"
+  },
+  "name": "day1",
+  "module": "index.ts",
+  "type": "module"
+}
