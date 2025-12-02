@@ -12,8 +12,8 @@
     "adapter": "CodeLLDB",
     "sourceLanguages": ["rust"],
     "request": "launch",
-    "program": "target/debug/day01",
     "expressions": "native",
+    "program": "target/debug/day01",
     "cwd": "day01"
   }
 ]
