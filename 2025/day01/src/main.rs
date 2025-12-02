@@ -2,6 +2,8 @@ const START: i32 = 50;
 const MAX: i32 = 100;
 const RIGHT_PREFIX: &str = "R";
 
+use std::ffi::FromVecWithNulError;
+
 use common::read_input;
 
 fn main() {
@@ -17,19 +19,19 @@ fn main() {
 
 fn get_password(instructions: &[&str]) -> i32 {
     let mut password = 0;
-    let mut safe = START;
+    let mut dial = START;
 
     for &instruction in instructions {
-        let value: i32 = str::parse(&instruction[1..]).unwrap();
+        let value: i32 = instruction[1..].parse().unwrap();
         if &instruction[..1] == RIGHT_PREFIX {
-            safe += value;
+            dial += value;
         } else {
-            safe -= value;
+            dial -= value;
         }
 
-        safe %= MAX;
+        dial %= MAX;
 
-        if safe == 0 {
+        if dial == 0 {
             password += 1;
         }
     }
@@ -39,26 +41,33 @@ fn get_password(instructions: &[&str]) -> i32 {
 
 fn get_password2(instructions: &[&str]) -> i32 {
     let mut password = 0;
-    let mut safe = START;
+    let mut dial = START;
 
     for &instruction in instructions {
-        let value: i32 = str::parse(&instruction[1..]).unwrap();
+        let value: i32 = instruction[1..].parse().unwrap();
+
+        let mod_value = value % MAX;
         password += value / MAX;
-        let converted_value = value % MAX;
 
         if &instruction[..1] == RIGHT_PREFIX {
-            safe += converted_value;
-        } else {
-            safe += MAX - converted_value;
-            if safe >= MAX {
-                password -= 1;
-            } else {
+            dial += mod_value;
+            if dial >= MAX {
                 password += 1;
+                dial -= MAX;
+            }
+        } else {
+            if dial > 0 {
+                if mod_value >= dial {
+                    dial += MAX - mod_value;
+                    dial %= MAX;
+                    password += 1;
+                } else {
+                    dial -= mod_value;
+                }
+            } else {
+                dial += MAX - mod_value;
             }
         }
-
-        password += safe / MAX;
-        safe %= MAX;
     }
 
     password
