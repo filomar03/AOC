@@ -1,0 +1,19 @@
+// Project-local debug tasks
+//
+// For more documentation on how to configure debug tasks,
+// see: https://zed.dev/docs/debugger
+[
+  {
+    "label": "Debug dayXX",
+    "build": {
+      "command": "cargo",
+      "args": ["build"]
+    },
+    "adapter": "CodeLLDB",
+    "sourceLanguages": ["rust"],
+    "request": "launch",
+    "program": "target/debug/day01",
+    "expressions": "native",
+    "cwd": "day01"
+  }
+]
