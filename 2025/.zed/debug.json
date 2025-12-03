@@ -13,7 +13,7 @@
     "sourceLanguages": ["rust"],
     "request": "launch",
     "expressions": "native",
-    "program": "target/debug/day01",
-    "cwd": "day01"
+    "program": "target/debug/day02",
+    "cwd": "day02"
   }
 ]
