@@ -1,4 +1,4 @@
-click contato anche quando ero gia su 0 girando in senso antiorario (L)
+clicks counted twice when turning counter-clockwise but coming from dial in position 0
 50, L50 -> 0 : 1
 0, R6 -> 6 : 1
 6, L15 -> 91 : 2

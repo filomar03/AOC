@@ -2,8 +2,6 @@ const START: i32 = 50;
 const MAX: i32 = 100;
 const RIGHT_PREFIX: &str = "R";
 
-use std::ffi::FromVecWithNulError;
-
 use common::read_input;
 
 fn main() {
