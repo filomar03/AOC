@@ -21,29 +21,79 @@ fn main() {
         .collect();
 
     let mut acc: Vec<Id> = vec![];
+    let mut acc2: Vec<Id> = vec![];
     for r in ranges {
-        let x = r.get_invalid();
-        let tmp: Vec<String> = x.iter().map(|f| f.0.to_string()).collect();
-        println!("start: {:?}\nend: {:?}\n{}", r.start, r.end, tmp.join(", "));
+        let mut ids = r.get_invalid();
+        let mut ids2 = r.get_invalid2();
+        // let ids_str: Vec<String> = ids2.iter().map(|f| f.0.to_string()).collect();
+        // println!(
+        //     "start: {:?}\nend: {:?}\n{}\n",
+        //     r.start,
+        //     r.end,
+        //     ids_str.join(", ")
+        // );
 
-        acc.extend(x);
+        acc.append(&mut ids);
+        acc2.append(&mut ids2);
     }
+    println!(
+        "Answer (part 1): {}",
+        acc.iter().fold(0, |acc, i| acc + i.0)
+    );
+    println!(
+        "Answer (part 2): {}",
+        acc2.iter().fold(0, |acc, i| acc + i.0)
+    );
 }
 
 #[derive(Clone, Copy, Debug)]
 struct Id(u64);
 
 impl Id {
-    fn id_valid(&self) -> bool {
+    fn is_valid(&self) -> bool {
         let str = self.0.to_string();
         if str.len() % 2 != 0 {
             return true;
         }
 
-        let a = &str[..str.len()];
-        let b = &str[str.len()..];
+        let a = &str[..str.len() / 2];
+        let b = &str[str.len() / 2..];
 
-        a == b
+        a != b
+    }
+
+    fn is_valid2(&self) -> bool {
+        let str = self.0.to_string();
+        let len = str.len();
+
+        if len < 2 {
+            return true;
+        }
+
+        for n in 2..len + 1 {
+            if len % n != 0 {
+                continue;
+            }
+
+            let mut parts: Vec<&str> = vec![];
+            let mut str = str.as_str();
+
+            for _ in 1..n + 1 {
+                let (part, rest) = str.split_at(len / n);
+                str = rest;
+                parts.push(part);
+            }
+
+            let identical = parts
+                .iter()
+                .fold(parts[0], |prev, part| if prev == *part { part } else { "" });
+
+            if identical != "" {
+                return false;
+            }
+        }
+
+        true
     }
 }
 
@@ -61,7 +111,20 @@ impl Range {
         let mut ids = Vec::new();
         let mut current = self.start;
         while current.0 <= self.end.0 {
-            if !current.id_valid() {
+            if !current.is_valid() {
+                ids.push(current);
+            }
+
+            current.0 += 1;
+        }
+        ids
+    }
+
+    fn get_invalid2(&self) -> Vec<Id> {
+        let mut ids = Vec::new();
+        let mut current = self.start;
+        while current.0 <= self.end.0 {
+            if !current.is_valid2() {
                 ids.push(current);
             }
 
