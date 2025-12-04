@@ -1,5 +1,4 @@
 use common::read_input;
-use itertools::Itertools;
 
 fn main() {
     let input = read_input();
@@ -46,6 +45,7 @@ fn main() {
     );
 }
 
+// useless
 #[derive(Clone, Copy, Debug)]
 struct Id(u64);
 
@@ -70,7 +70,7 @@ impl Id {
             return true;
         }
 
-        for n in 2..len + 1 {
+        for n in (2..=len).rev() {
             if len % n != 0 {
                 continue;
             }
@@ -78,7 +78,7 @@ impl Id {
             let mut parts: Vec<&str> = vec![];
             let mut str = str.as_str();
 
-            for _ in 1..n + 1 {
+            for _ in 0..n {
                 let (part, rest) = str.split_at(len / n);
                 str = rest;
                 parts.push(part);
@@ -107,6 +107,7 @@ impl Range {
         Self { start, end }
     }
 
+    // instead of trying every id in range find directly hte next invalid
     fn get_invalid(&self) -> Vec<Id> {
         let mut ids = Vec::new();
         let mut current = self.start;
