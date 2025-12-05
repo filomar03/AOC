@@ -14,6 +14,9 @@
     "request": "launch",
     "expressions": "native",
     "program": "target/debug/day03",
-    "cwd": "day03"
+    "cwd": "day03",
+    "env": {
+      "RUST_BACKTRACE": "1"
+    }
   }
 ]
