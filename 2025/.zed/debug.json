@@ -13,8 +13,8 @@
     "sourceLanguages": ["rust"],
     "request": "launch",
     "expressions": "native",
-    "program": "target/debug/day03",
-    "cwd": "day03",
+    "program": "target/debug/day04",
+    "cwd": "day04",
     "env": {
       "RUST_BACKTRACE": "1"
     }
